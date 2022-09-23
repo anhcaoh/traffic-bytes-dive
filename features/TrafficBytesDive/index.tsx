@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Button, Table, Typography } from "antd";
+import { Button, Space, Table, Typography, Upload } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
+import type { UploadProps } from "antd";
 import type { ColumnsType, TableProps } from "antd/es/table";
 import { v4 as uuidv4 } from "uuid";
 import * as raw_data from "./data/cleansed.json";
 import TrafficBytesContext from "context/TrafficBytesContext";
+import { read } from "fs";
 
 interface DataType {
   key: string;
@@ -12,23 +15,31 @@ interface DataType {
   sumbytes: string;
 }
 
-const _data: DataType[] = raw_data.reduce((accum: DataType[], current: any) => {
-  const item = {
-    key: uuidv4(),
-    destination: current.result["All_Traffic.dest"] as string,
-    source: current.result["All_Traffic.dest"] as string,
-    sumbytes: current.result.sum_bytes as string,
-  };
-  accum.push(item);
-  return accum;
-}, []);
-
 export interface ITrafficBytesDiveProps {
   heading?: string;
 }
 const TrafficBytesDive: React.FC = ({
   heading = "🚦 Traffic Bytes Dive 🤿",
 }: ITrafficBytesDiveProps) => {
+  let tbd_raw_data = [];
+  if (typeof window !== "undefined") {
+    tbd_raw_data = localStorage.getItem("tbd_raw_data");
+    if (tbd_raw_data) tbd_raw_data = JSON.parse(tbd_raw_data);
+  }
+  const [rawData, setRawData] = useState(tbd_raw_data || []);
+  const _data: DataType[] = rawData?.reduce(
+    (accum: DataType[], current: any) => {
+      const item = {
+        key: uuidv4(),
+        destination: current.result["All_Traffic.dest"] as string,
+        source: current.result["All_Traffic.dest"] as string,
+        sumbytes: current.result.sum_bytes as string,
+      };
+      accum.push(item);
+      return accum;
+    },
+    []
+  );
   const [filtersSrc, setFiltersSrc] = useState([]);
   const [filtersDest, setFiltersDest] = useState([]);
   const [filtersSumbytes, setFiltersSumbytes] = useState([]);
@@ -157,14 +168,45 @@ const TrafficBytesDive: React.FC = ({
     setFilteredSumbytesValue([]);
     setSelectedRowKeys({ source: [], destination: [], sumbytes: [] });
   };
+  const uploadProps: UploadProps = {
+    name: "file",
+    accept: ".json",
+    onChange(info) {
+      if (info.file.status !== "uploading") {
+        console.log(info.file, info.fileList);
+        let reader = new FileReader();
+        reader.onload = (e) => {
+          console.log(e.target.result);
+          setRawData(JSON.parse(e.target.result));
+          localStorage.setItem("tbd_raw_data", e.target.result);
+        };
+        reader.readAsText(info.file.originFileObj);
+      }
+      if (info.file.status === "done") {
+        console.log(`${info.file.name} file uploaded successfully`);
+      } else if (info.file.status === "error") {
+        console.error(`${info.file.name} file upload failed.`);
+      }
+    },
+  };
   return (
     <>
       <Typography.Title level={3}>{heading}</Typography.Title>
-      <div>
+      <Space
+        direction="horizontal"
+        align="start"
+        size="large"
+        style={{ margin: 8 }}
+      >
+        <Upload {...uploadProps}>
+          <Button icon={<UploadOutlined />} size="small">
+            Upload raw data (JSON)
+          </Button>
+        </Upload>
         <Button size="small" onClick={clearAllFilters}>
           Clear all filters
         </Button>
-      </div>
+      </Space>
       <Table
         style={{ width: 520, margin: 12 }}
         columns={columns}

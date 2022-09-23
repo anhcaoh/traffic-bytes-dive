@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Traffic Bytes Dive</title>
+    <meta
+      name="description"
+      content="Dive and navigate through IP address traffic and its sum bytes"
+    />
+    <meta name="next-head-count" content="4" />
+    <link
+      rel="preload"
+      href="./_next/static/css/616f14a174da0175.css"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      href="./_next/static/css/616f14a174da0175.css"
+      data-n-g=""
+    />
+    <link
+      rel="preload"
+      href="./_next/static/css/ae0e3e027412e072.css"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      href="./_next/static/css/ae0e3e027412e072.css"
+      data-n-p=""
+    />
+    <noscript data-n-css=""></noscript>
+    <script
+      defer=""
+      nomodule=""
+      src="./_next/static/chunks/polyfills-c67a75d1b6f99dc8.js"
+    ></script>
+    <script
+      src="./_next/static/chunks/webpack-6b34fa3b713062b4.js"
+      defer=""
+    ></script>
+    <script
+      src="./_next/static/chunks/framework-9b5d6ec4444c80fa.js"
+      defer=""
+    ></script>
+    <script
+      src="./_next/static/chunks/main-3123a443c688934f.js"
+      defer=""
+    ></script>
+    <script
+      src="./_next/static/chunks/pages/_app-eed5de7e5e0cf034.js"
+      defer=""
+    ></script>
+    <script
+      src="./_next/static/chunks/683-c6e0197ccbe21ffa.js"
+      defer=""
+    ></script>
+    <script
+      src="./_next/static/chunks/pages/index-a9ce23b4338ee44c.js"
+      defer=""
+    ></script>
+    <script
+      src="./_next/static/1kwsACEAzPvZB7cSwx34r/_buildManifest.js"
+      defer=""
+    ></script>
+    <script
+      src="./_next/static/1kwsACEAzPvZB7cSwx34r/_ssgManifest.js"
+      defer=""
+    ></script>
+  </head>
+  <body>
+    <div id="__next">
+      <div class="Home_container__bCOhY">
+        <main class="Home_main__nLjiQ">
+          <h3 class="ant-typography">🚦 Traffic Bytes Dive 🤿</h3>
+          <div
+            class="ant-space ant-space-horizontal ant-space-align-start"
+            style="margin: 8px"
+          >
+            <div class="ant-space-item" style="margin-right: 24px">
+              <span class=""
+                ><div
+                  class="ant-upload ant-upload-select ant-upload-select-text"
+                >
+                  <span tabindex="0" class="ant-upload" role="button"
+                    ><input
+                      type="file"
+                      style="display: none"
+                      accept=".json"
+                    /><button
+                      type="button"
+                      class="ant-btn ant-btn-default ant-btn-sm"
+                    >
+                      <span
+                        role="img"
+                        aria-label="upload"
+                        class="anticon anticon-upload"
+                        ><svg
+                          viewBox="64 64 896 896"
+                          focusable="false"
+                          data-icon="upload"
+                          width="1em"
+                          height="1em"
+                          fill="currentColor"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M400 317.7h73.9V656c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V317.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 163a8 8 0 00-12.6 0l-112 141.7c-4.1 5.3-.4 13 6.3 13zM878 626h-60c-4.4 0-8 3.6-8 8v154H214V634c0-4.4-3.6-8-8-8h-60c-4.4 0-8 3.6-8 8v198c0 17.7 14.3 32 32 32h684c17.7 0 32-14.3 32-32V634c0-4.4-3.6-8-8-8z"
+                          ></path></svg></span
+                      ><span>Upload raw data (JSON)</span>
+                    </button></span
+                  >
+                </div>
+                <div class="ant-upload-list ant-upload-list-text"></div
+              ></span>
+            </div>
+            <div class="ant-space-item">
+              <button type="button" class="ant-btn ant-btn-default ant-btn-sm">
+                <span>Clear all filters</span>
+              </button>
+            </div>
+          </div>
+          <div class="ant-table-wrapper" style="width: 520px; margin: 12px">
+            <div class="ant-spin-nested-loading">
+              <div class="ant-spin-container">
+                <div class="ant-table ant-table-empty">
+                  <div class="ant-table-container">
+                    <div class="ant-table-content">
+                      <table style="table-layout: auto">
+                        <colgroup>
+                          <col style="width: 45%" />
+                        </colgroup>
+                        <thead class="ant-table-thead">
+                          <tr>
+                            <th class="ant-table-cell">
+                              <div class="ant-table-filter-column">
+                                <span class="ant-table-column-title"
+                                  >Source</span
+                                ><span
+                                  role="button"
+                                  tabindex="-1"
+                                  class="ant-dropdown-trigger ant-table-filter-trigger"
+                                  ><span
+                                    role="img"
+                                    aria-label="filter"
+                                    class="anticon anticon-filter"
+                                    ><svg
+                                      viewBox="64 64 896 896"
+                                      focusable="false"
+                                      data-icon="filter"
+                                      width="1em"
+                                      height="1em"
+                                      fill="currentColor"
+                                      aria-hidden="true"
+                                    >
+                                      <path
+                                        d="M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z"
+                                      ></path></svg></span
+                                ></span>
+                              </div>
+                            </th>
+                            <th class="ant-table-cell">
+                              <div class="ant-table-filter-column">
+                                <span class="ant-table-column-title"
+                                  >Destination</span
+                                ><span
+                                  role="button"
+                                  tabindex="-1"
+                                  class="ant-dropdown-trigger ant-table-filter-trigger"
+                                  ><span
+                                    role="img"
+                                    aria-label="filter"
+                                    class="anticon anticon-filter"
+                                    ><svg
+                                      viewBox="64 64 896 896"
+                                      focusable="false"
+                                      data-icon="filter"
+                                      width="1em"
+                                      height="1em"
+                                      fill="currentColor"
+                                      aria-hidden="true"
+                                    >
+                                      <path
+                                        d="M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z"
+                                      ></path></svg></span
+                                ></span>
+                              </div>
+                            </th>
+                            <th class="ant-table-cell">
+                              <div class="ant-table-filter-column">
+                                <span class="ant-table-column-title"
+                                  >Sum Bytes</span
+                                ><span
+                                  role="button"
+                                  tabindex="-1"
+                                  class="ant-dropdown-trigger ant-table-filter-trigger"
+                                  ><span
+                                    role="img"
+                                    aria-label="filter"
+                                    class="anticon anticon-filter"
+                                    ><svg
+                                      viewBox="64 64 896 896"
+                                      focusable="false"
+                                      data-icon="filter"
+                                      width="1em"
+                                      height="1em"
+                                      fill="currentColor"
+                                      aria-hidden="true"
+                                    >
+                                      <path
+                                        d="M349 838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V642H349v196zm531.1-684H143.9c-24.5 0-39.8 26.7-27.5 48l221.3 376h348.8l221.3-376c12.1-21.3-3.2-48-27.7-48z"
+                                      ></path></svg></span
+                                ></span>
+                              </div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody class="ant-table-tbody">
+                          <tr class="ant-table-placeholder">
+                            <td colspan="3" class="ant-table-cell">
+                              <div class="ant-empty ant-empty-normal">
+                                <div class="ant-empty-image">
+                                  <svg
+                                    class="ant-empty-img-simple"
+                                    width="64"
+                                    height="41"
+                                    viewBox="0 0 64 41"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <g
+                                      transform="translate(0 1)"
+                                      fill="none"
+                                      fill-rule="evenodd"
+                                    >
+                                      <ellipse
+                                        class="ant-empty-img-simple-ellipse"
+                                        cx="32"
+                                        cy="33"
+                                        rx="32"
+                                        ry="7"
+                                      ></ellipse>
+                                      <g
+                                        class="ant-empty-img-simple-g"
+                                        fill-rule="nonzero"
+                                      >
+                                        <path
+                                          d="M55 12.76L44.854 1.258C44.367.474 43.656 0 42.907 0H21.093c-.749 0-1.46.474-1.947 1.257L9 12.761V22h46v-9.24z"
+                                        ></path>
+                                        <path
+                                          d="M41.613 15.931c0-1.605.994-2.93 2.227-2.931H55v18.137C55 33.26 53.68 35 52.05 35h-40.1C10.32 35 9 33.259 9 31.137V13h11.16c1.233 0 2.227 1.323 2.227 2.928v.022c0 1.605 1.005 2.901 2.237 2.901h14.752c1.232 0 2.237-1.308 2.237-2.913v-.007z"
+                                          class="ant-empty-img-simple-path"
+                                        ></path>
+                                      </g>
+                                    </g>
+                                  </svg>
+                                </div>
+                                <div class="ant-empty-description">No Data</div>
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script id="__NEXT_DATA__" type="application/json">
+      {
+        "props": { "pageProps": {} },
+        "page": "/",
+        "query": {},
+        "buildId": "1kwsACEAzPvZB7cSwx34r",
+        "nextExport": true,
+        "autoExport": true,
+        "isFallback": false,
+        "scriptLoader": []
+      }
+    </script>
+  </body>
+</html>
