@@ -4,9 +4,8 @@ import { UploadOutlined } from "@ant-design/icons";
 import type { UploadProps } from "antd";
 import type { ColumnsType, TableProps } from "antd/es/table";
 import { v4 as uuidv4 } from "uuid";
-import * as raw_data from "./data/cleansed.json";
+import raw_data from "./data/cleansed.json";
 import TrafficBytesContext from "context/TrafficBytesContext";
-import { read } from "fs";
 
 interface DataType {
   key: string;
@@ -14,25 +13,20 @@ interface DataType {
   source: string;
   sumbytes: string;
 }
-
 export interface ITrafficBytesDiveProps {
   heading?: string;
 }
 const TrafficBytesDive: React.FC = ({
   heading = "🚦 Traffic Bytes Dive 🤿",
 }: ITrafficBytesDiveProps) => {
-  let tbd_raw_data = [];
-  if (typeof window !== "undefined") {
-    tbd_raw_data = localStorage.getItem("tbd_raw_data");
-    if (tbd_raw_data) tbd_raw_data = JSON.parse(tbd_raw_data);
-  }
-  const [rawData, setRawData] = useState(tbd_raw_data || []);
+  // TODO much needed refactor here....not having the time now...sorry!
+  const [rawData, setRawData] = useState(raw_data || []);
   const _data: DataType[] = rawData?.reduce(
     (accum: DataType[], current: any) => {
       const item = {
         key: uuidv4(),
         destination: current.result["All_Traffic.dest"] as string,
-        source: current.result["All_Traffic.dest"] as string,
+        source: current.result["All_Traffic.src"] as string,
         sumbytes: current.result.sum_bytes as string,
       };
       accum.push(item);
